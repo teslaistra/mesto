@@ -12,36 +12,70 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <p class="profile__about">Исследователь океана</p>
-
-        <img class="profile__edit-button" src="./images/pen.svg">
-        <img class="profile__add-button" src="./images/add.svg">
+        <img class="profile__avatar" src="./images/kusto.jpg">
+        <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__about">Исследователь океана</p>
+            <button type="button" class="profile__edit-button"></button>
+        </div>
+        <button type="button" class="profile__add-button">
       </section>
 
       <section class="elements">
         <div class="element">
-            <img class="element__image" src="">
+            <img class="element__image" src="./images/gallery/moscow.jpg">
             <h2 class="element__title">Москва</h2>
-            <img class="element__like" src="./images/like.svg">
+            <button class="element__like">
         </div>
 
         <div class="element">
-            <img class="element__image" src="">
+            <img class="element__image" src="./images/gallery/spb.jpg">
             <h2 class="element__title">Санкт-Петербург</h2>
-            <img class="element__like" src="./images/like.svg">
+            <button class="element__like">
         </div>
 
         <div class="element">
-            <img class="element__image" src="">
-            <h2 class="element__title">Владивосток</h2>
-            <img class="element__like" src="./images/like.svg">
+            <img class="element__image" src="./images/gallery/tula.jpg">
+            <h2 class="element__title">Тула</h2>
+            <button class="element__like">
         </div>
+
+        <div class="element">
+          <img class="element__image" src="./images/gallery/moscow.jpg">
+          <h2 class="element__title">Москва</h2>
+          <button class="element__like">
+      </div>
+
+      <div class="element">
+          <img class="element__image" src="./images/gallery/spb.jpg">
+          <h2 class="element__title">Санкт-Петербург</h2>
+          <button class="element__like element__like_active">
+      </div>
+
+      <div class="element">
+          <img class="element__image" src="./images/gallery/tula.jpg">
+          <h2 class="element__title">Тула</h2>
+          <button class="element__like">
+      </div>
       </section>
+
+      <div class="popup">
+        <div class="popup__container">
+          <form class="popup__form">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+              <input name='name' id='name' class='popup__item' type="text" placeholder="Имя" required >
+              <input name='description' id='description' class='popup__item' type="text" placeholder="Деятельность" required >
+              <button id='popup__submit-button' type="submit" class="popup__submit-button">
+                Сохранить
+              </button>
+        </form>
+        <button type="submit" class="popup__close-button"></button>
+        </div>
+      </div>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+    <script src="./script/script.js"></script>
   </body>
 </html>
