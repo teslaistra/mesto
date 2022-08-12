@@ -2,14 +2,12 @@
   grid-area: edit-button;
   width: 24px;
   height: 24px;
-
+  margin: auto 0;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-
   background-image: url(./../../../images/pen.svg);
   border: 1px solid white;
-
   transition: opacity 0.2s ease-in-out;
 }
 

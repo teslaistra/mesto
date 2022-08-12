@@ -4,10 +4,9 @@
     "image image"
     "text like";
   align-items: baseline;
-  row-gap: 16px;
+  /* row-gap: 16px; */
   column-gap: 18px;
   overflow: hidden;
-
   background-color: white;
   border-radius: 10px;
 }
