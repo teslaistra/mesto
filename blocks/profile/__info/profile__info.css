@@ -3,7 +3,7 @@
   grid-template-areas:
     "name edit-button"
     "description description";
-  grid-template-columns: 1fr 24px;
+  grid-template-columns: minmax(295px, 1fr) 24px;
   /* align-items: baseline; */
   margin-left: 30px;
   row-gap: 16px;

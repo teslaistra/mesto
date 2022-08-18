@@ -22,47 +22,10 @@
       </section>
 
       <section class="elements">
-        <div class="element">
-            <img class="element__image" src="./images/gallery/moscow.jpg" alt="москва">
-            <h2 class="element__title">Москва</h2>
-            <button type="button" class="element__like"></button>
-        </div>
-
-        <div class="element">
-            <img class="element__image" src="./images/gallery/spb.jpg" alt="санкт-петербург">
-            <h2 class="element__title">Санкт-Петербург</h2>
-            <button type="button" class="element__like"></button>
-        </div>
-
-        <div class="element">
-            <img class="element__image" src="./images/gallery/tula.jpg" alt="Тула">
-            <h2 class="element__title">Тула</h2>
-            <button type="button" class="element__like"></button>
-        </div>
-
-        <div class="element">
-          <img class="element__image" src="./images/gallery/moscow.jpg" alt="Москва">
-          <h2 class="element__title">Москва</h2>
-          <button type="button" class="element__like"></button>
-      </div>
-
-      <div class="element">
-          <img class="element__image" src="./images/gallery/spb.jpg" alt="Санкт-Петербург">
-          <h2 class="element__title">Санкт-Петербург</h2>
-          <button type="button" class="element__like element__like_active"></button>
-      </div>
-
-      <div class="element">
-          <img class="element__image" src="./images/gallery/tula.jpg" alt="Тула">
-          <h2 class="element__title">Тула</h2>
-          <button type="button" class="element__like"></button>
-      </div>
       </section>
     </main>
-    <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
-    </footer>
-    <div class="popup">
+
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <form name="profile-edit" class="popup__form">
           <h2 class="popup__heading">Редактировать профиль</h2>
@@ -75,6 +38,41 @@
       <button type="button" class="popup__close-button"></button>
       </div>
     </div>
+
+    <div class="popup popup_type_add-element">
+      <div class="popup__container">
+        <form name="element-add" class="popup__form">
+          <h2 class="popup__heading">Новое место</h2>
+            <input name='mesto-name' id='mesto-name' class='popup__item popup__item_content_mesto-name' type="text" placeholder="Название" required >
+            <input name='link' id='link' class='popup__item popup__item_content_mesto-link' type="text" placeholder="Ссылка на картинку" required >
+            <button id='popup__submit-button' type="submit" class="popup__submit-button">
+              Создать
+            </button>
+      </form>
+      <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_image">
+      <div class="popup__container popup__container_type_image">
+        <img class="popup__image" src="./images/gallery/spb.jpg" alt="место">
+        <h2 class="popup__image-title">Санкт-Петербург</h2>
+      <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+
+    <template id="element-template">
+      <div class="element">
+        <button type="button" class="element__delete"></button>
+        <img class="element__image" src="./images/gallery/spb.jpg" alt="санкт-петербург">
+        <h2 class="element__title">Санкт-Петербург</h2>
+        <button type="button" class="element__like"></button>
+    </div>
+    </template>
+
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
     <script src="./script/script.js"></script>
   </body>
 </html>

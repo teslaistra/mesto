@@ -2,7 +2,8 @@
   position: absolute;
   width: 32px;
   height: 32px;
-  left: 438px;
+  /* left: 438px; */
+  right: -48px;
   top: -48px;
   background-image: url(../../../images/close.svg);
   background-repeat: no-repeat;
