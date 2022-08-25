@@ -15,7 +15,7 @@ const mestoLink = document.querySelector(".popup__item_content_mesto-link");
 
 const imagePopup = document.querySelector('.popup_type_image');
 
-const elementTemplate = document.querySelector("#element-template").content;
+const elementTemplate = document.querySelector("#element-template").content.querySelector('.element');
 
 const popup = document.querySelector(".popup_type_image");
 const popupImage = popup.querySelector(".popup__image");
@@ -32,9 +32,12 @@ const closePopup  = (popup) => {
 
 const addElement = (element) => {
   const elementClone = elementTemplate.cloneNode(true);
-  elementClone.querySelector(".element__image").src = element.link;
+  const elementImage = elementClone.querySelector(".element__image");
+
   elementClone.querySelector(".element__title").textContent = element.name;
-  elementClone.querySelector(".element__image").alt = element.name;
+  elementImage.alt = element.name;
+  elementImage.src = element.link;
+
 
   elementClone
     .querySelector(".element__delete")
