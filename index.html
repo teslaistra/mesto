@@ -35,7 +35,7 @@
         <form name="profile-edit" class="popup__form" novalidate>
           <h2 class="popup__heading">Редактировать профиль</h2>
           <label class="popup__field">
-            <input name='name' id='name' class='popup__item popup__item_content_name' type="text" placeholder="Имя"  minlength="2" minlength="40" required >
+            <input name='name' id='name' class='popup__item popup__item_content_name' type="text" placeholder="Имя"  minlength="2" maxlength="40" required >
             <span class="popup__item-error name-error"></span>
           </label>
           <label class="popup__field">
@@ -55,7 +55,7 @@
         <form name="element-add" class="popup__form" novalidate>
           <h2 class="popup__heading">Новое место</h2>
           <label class="popup__field">
-            <input name='mesto-name' id='mesto-name' class='popup__item popup__item_content_mesto-name' type="text" placeholder="Название" minlength="2" minlength="30" required>
+            <input name='mesto-name' id='mesto-name' class='popup__item popup__item_content_mesto-name' type="text" placeholder="Название" minlength="2" maxlength="30" required>
             <span class="popup__item-error mesto-name-error"></span>
           </label>
             <label class="popup__field">
