@@ -31,11 +31,11 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener('keydown', keyHandler);
   document.removeEventListener("click", clickHandler);
+};
 
-  const form = popup.querySelector('.popup__form');
-  if (form) {
-    form.reset();
-  }
+const resetPopupForm = (popup) => {
+  const form = popup.querySelector(".popup__form");
+  form.reset();
 };
 
 const addElement = (element) => {
@@ -65,11 +65,13 @@ const addElement = (element) => {
     popupImage.src = element.link;
     popupImage.alt = element.name;
     popupTitle.textContent = element.name;
-
     openPopup(imagePopup);
   });
 
+
   return elementClone;
+
+
 };
 initialCards.reverse().forEach((cardData) => {
   elementsContainer.prepend(addElement(cardData));
@@ -92,6 +94,7 @@ editForm.addEventListener("submit", (evt) => {
 
 addButton.addEventListener("click", function () {
   hideInputErrors(elementPopupAdd, validationConfig);
+  resetPopupForm(elementPopupAdd);
   openPopup(elementPopupAdd);
 });
 
