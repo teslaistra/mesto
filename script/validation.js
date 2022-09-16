@@ -62,9 +62,22 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(validationConfig.inactiveButtonClass);
+        buttonElement.disabled = true; 
     } else {
         buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+        buttonElement.disabled = false;
     }
 };
+
+const hideInputErrors = (popup, validationConfig) => {
+    const inputList = Array.from(popup.querySelectorAll(validationConfig.inputSelector));
+    inputList.forEach(inputElement => hideInputError(popup, inputElement, validationConfig));
+    const buttonElement = popup.querySelector(validationConfig.submitButtonSelector);
+
+    toggleButtonState(inputList, buttonElement, validationConfig); 
+
+    // popup.querySelectorAll('.popup__item-error_active').forEach(n => n.classList.remove(validationConfig.errorClass));
+    // popup.querySelectorAll('.popup__item_type_error').forEach(n => n.classList.remove(validationConfig.inputErrorClass));
+  };
 
 enableValidation(validationConfig); 
