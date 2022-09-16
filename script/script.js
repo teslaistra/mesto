@@ -93,8 +93,8 @@ editForm.addEventListener("submit", (evt) => {
 
 
 addButton.addEventListener("click", function () {
-  hideInputErrors(elementPopupAdd, validationConfig);
   resetPopupForm(elementPopupAdd);
+  hideInputErrors(elementPopupAdd, validationConfig);
   openPopup(elementPopupAdd);
 });
 
