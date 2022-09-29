@@ -14,23 +14,17 @@ class FormValidator {
         this._formElement = formElement;
         this._validationConfig = validationConfig;
         this._inputList = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
-
+        this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
     }
-
-
-
-
-    
 
     _checkInputValidity(inputElement){
         if (!inputElement.validity.valid) {
             this._showInputError(this._formElement, inputElement, inputElement.validationMessage);
         } else {
-            this._hideInputError(this._formElement, inputElement);
+            this._hideInputError(inputElement);
         }
     };
   
-
     _showInputError(formElement, inputElement, errorMessage){
         const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.add(this._validationConfig.inputErrorClass);
@@ -38,11 +32,16 @@ class FormValidator {
         errorElement.classList.add(this._validationConfig.errorClass);
     };
 
-    _hideInputError(formElement, inputElement){
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.remove(this._validationConfig.inputErrorClass);
-        errorElement.classList.remove(this._validationConfig.errorClass);
-        errorElement.textContent = '';
+    _hideInputError(inputElement){
+        console.log(inputElement);
+        console.log(`.${inputElement.id}-error`);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+        console.log(errorElement);
+        if (errorElement) {
+            inputElement.classList.remove(this._validationConfig.inputErrorClass);
+            errorElement.classList.remove(this._validationConfig.errorClass);
+            errorElement.textContent = '';
+        }
     };
 
     _hasInvalidInput(){
@@ -51,21 +50,19 @@ class FormValidator {
         });
     };
 
-    _toggleButtonState(buttonElement){
+    _toggleButtonState(){
         if (this._hasInvalidInput()) {
-            buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
-            buttonElement.disabled = true; 
+            this._buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
+            this._buttonElement.disabled = true; 
         } else {
-            buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
-            buttonElement.disabled = false;
+            this._buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
+            this._buttonElement.disabled = false;
         }
     };
 
     hideInputErrors() {
-        this._inputList.forEach(inputElement => this._hideInputError(this._formElement, inputElement));
-        const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
-    
-        this._toggleButtonState(buttonElement); 
+        this._inputList.forEach(inputElement => this._hideInputError(inputElement));
+        this._toggleButtonState(this._buttonElement); 
       };
 
     enableValidation() {  
@@ -73,16 +70,12 @@ class FormValidator {
     };
 
     _setEventListeners() {
-        const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
-        this._toggleButtonState(buttonElement);
-    
-        this._inputList.forEach((inputElement) => {
-            console.log(this);
-            inputElement._class = this;
-            inputElement.addEventListener('input', function (evt) {
-                console.log(evt.currentTarget._class);
-                evt.currentTarget._class._checkInputValidity(inputElement);
-                evt.currentTarget._class._toggleButtonState(buttonElement);
+        this._toggleButtonState(this._buttonElement);
+
+        this._inputList.forEach(inputElement => {
+            inputElement.addEventListener('input', () => {
+                this._checkInputValidity(inputElement);
+                this._toggleButtonState();
             });
         });
     };
