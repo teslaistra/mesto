@@ -16,9 +16,9 @@
         <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about">Исследователь океана</p>
-            <button type="button" class="profile__edit-button"></button>
+            <button aria-label="Редактировать" type="button" class="profile__edit-button"></button>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button aria-label="Добавить" type="button" class="profile__add-button"></button>
       </section>
 
       <section class="elements">
@@ -46,7 +46,7 @@
               Сохранить
             </button>
       </form>
-      <button type="button" class="popup__close-button"></button>
+      <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
       </div>
     </div>
 
@@ -80,14 +80,12 @@
 
     <template id="element-template">
       <div class="element">
-        <button type="button" class="element__delete"></button>
-        <img class="element__image" src="./images/gallery/spb.jpg" alt="санкт-петербург">
+        <button aria-label="Удалить" type="button" class="element__delete"></button>
+        <img class="element__image" src="" alt="">
         <h2 class="element__title">Санкт-Петербург</h2>
-        <button type="button" class="element__like"></button>
+        <button aria-label="Лайк" type="button" class="element__like"></button>
     </div>
     </template>
-    <script type="module" src="./script/FormValidator.js"></script>
     <script type="module" src="./script/index.js"></script>
-    <script type="module" src="./script/Card.js"></script>
   </body>
 </html>

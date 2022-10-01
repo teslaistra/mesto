@@ -1,14 +1,16 @@
-import {imagePopup,openPopup, popupTitle, popupImage } from './index.js';
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._cardSelector = cardSelector;
     this._link = data.link;
     this._name = data.name;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const cardElement = document.querySelector(this._cardSelector).content.querySelector(".element").cloneNode(true);
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".element")
+      .cloneNode(true);
     return cardElement;
   }
 
@@ -22,68 +24,32 @@ class Card {
     this._element.remove();
   }
 
-  _handleImageClick(evt) {
-    if (evt.target.classList.contains("element__image")) {
-        popupImage.src = this._link;
-        popupImage.alt = this._name;
-        popupTitle.textContent = this._name;
-        openPopup(imagePopup);
-    }
-  }
-
   _setEventListeners() {
-    let likeButton = this._element.querySelector(".element__like");
-    likeButton.addEventListener("click", () => {
+    this._like.addEventListener("click", () => {
       this._handleLikeClick();
     });
-    this._element
-      .querySelector(".element__delete")
-      .addEventListener("click", () => {
-        this._handleDeleteClick();
-      });
-    this._element.addEventListener("click", (evt) => {
-        this._handleImageClick(evt);
-      });
-
-
+    this._delete.addEventListener("click", () => {
+      this._handleDeleteClick();
+    });
+    this._image.addEventListener("click", () => {
+      this._handleCardClick.bind(this)();
+    });
   }
 
   generateCard() {
     this._element = this._getTemplate();
+    this._like = this._element.querySelector(".element__like");
+    this._image = this._element.querySelector(".element__image");
+    this._delete = this._element.querySelector(".element__delete");
 
     this._setEventListeners();
-    this._element.querySelector(".element__image").src = this._link;
-    this._element.querySelector(".element__image").alt = this._name;
+
+    this._image.src = this._link;
+    this._image.alt = this._name;
     this._element.querySelector(".element__title").textContent = this._name;
+
     return this._element;
   }
 }
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-export { Card, initialCards };
+export { Card };
