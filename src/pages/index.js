@@ -38,13 +38,7 @@ profileEditPopup.setEventListeners();
 const elementAddPopup = new PopupWithForm(
   popupAddSelector,
   ({ "mesto-name": name, link }) => {
-    const cardElement = new Card(
-      { name, link },
-      elementTemplate,
-      handleImageClick
-    );
-    const card = cardElement.generateCard();
-    elementsList.addItem(card);
+    elementsList.addItem(createCard(name, link, elementTemplate, handleCardClick));
   }
 );
 elementAddPopup.setEventListeners();
@@ -62,29 +56,39 @@ const elementsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const newCard = new Card(item, elementTemplate, handleImageClick);
-      const cardElement = newCard.generateCard();
-
-      elementsList.addItem(cardElement);
+      elementsList.addItem(createCard(item.name, item.link, elementTemplate, handleCardClick));
     },
   },
   ".elements"
 );
 
 editButton.addEventListener("click", function () {
-  editFormValidation.hideInputErrors();
+  editFormValidation.resetValidation();
   const userData = userIfo.getUserInfo();
   profileEditPopup.setInputValues(userData);
   profileEditPopup.open();
 });
 
 addButton.addEventListener("click", function () {
-  addFormValidation.hideInputErrors();
+  addFormValidation.resetValidation();
   elementAddPopup.open();
 });
 
-function handleImageClick() {
-  imagePopup.open(this._link, this._name);
+function handleCardClick(name, link) {
+  imagePopup.open(name, link);
+ }
+
+function createCard(name, link, cardSelector, handleCardClick) {
+  const card = new Card(
+    {
+      name: name,
+      link: link,
+    },
+    cardSelector,
+    handleCardClick
+  );
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 elementsList.renderItems();

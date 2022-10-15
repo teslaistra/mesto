@@ -15,9 +15,7 @@ class Card {
   }
 
   _handleLikeClick() {
-    this._element
-      .querySelector(".element__like")
-      .classList.toggle("element__like_active");
+    this._like.classList.toggle("element__like_active");
   }
 
   _handleDeleteClick() {
@@ -31,8 +29,8 @@ class Card {
     this._delete.addEventListener("click", () => {
       this._handleDeleteClick();
     });
-    this._image.addEventListener("click", () => {
-      this._handleCardClick.bind(this)();
+    this._image.addEventListener('click', () => {
+      this._handleCardClick(this._link, this._name)
     });
   }
 
