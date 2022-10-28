@@ -11,7 +11,9 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="аватарка">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="аватарка">
+        </div>
         <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about">Исследователь океана</p>
@@ -65,6 +67,32 @@
               Создать
             </button>
       </form>
+      <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <form name="edit-avatar" class="popup__form" id="edit-avatar" novalidate>
+          <h2 class="popup__heading">Обновить аватар</h2>
+          <label class="popup__field">
+            <input name='avatar-link' id='avatar-link' class='popup__item' type="url" placeholder="Ссылка на картинку" required>
+            <span class="popup__item-error mesto-name-error"></span>
+          </label>
+            <button id='popup__edit-avatar-button' type="submit" class="popup__submit-button">
+              Сохранить
+            </button>
+      </form>
+      <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <h2 class="popup__heading">Вы уверены?</h2>
+            <button id='popup__add_submit-button' type="submit" class="popup__submit-button">
+              Да
+            </button>
       <button type="button" class="popup__close-button"></button>
       </div>
     </div>

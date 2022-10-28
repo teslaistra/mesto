@@ -1,0 +1,5 @@
+.profile__avatar-container{
+    background-position: center;    
+    background-image: url(./../../../images/pen.png);
+    background-repeat: no-repeat;
+}

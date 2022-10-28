@@ -18,6 +18,8 @@ export const nameSelector = ".profile__name";
 export const descriptionSelector = ".profile__about";
 export const popupEditSelector = ".popup_type_edit-profile";
 export const elementTemplate = "#element-template";
+export const popupAvatarSelector = ".popup_type_edit-avatar";
+export const avatarSelector = ".profile__avatar";
 
 export const initialCards = [
     {

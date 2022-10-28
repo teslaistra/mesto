@@ -6,7 +6,9 @@ class PopupWithForm extends Popup{
         this._submitForm = submitForm;
         this._form = this._popup.querySelector('.popup__form');
         this._inputList = this._form.querySelectorAll('.popup__item');
-        this._button = this._form.querySelector('.popup__save-button');
+        this._button = this._form.querySelector('.popup__submit-button');
+        console.log(this._form);
+        this._defaultText = this._button.textContent;
     }
 
     _getInputValues() {
@@ -37,6 +39,14 @@ class PopupWithForm extends Popup{
             this._submitForm(this._getInputValues());
             this.close();
         });
+    }
+
+    renderLoading(isLoading, content) {
+        if (isLoading) {
+            this._button.textContent = content;
+        } else {
+            this._button.textContent = this._defaultText;
+        }
     }
 }
 
