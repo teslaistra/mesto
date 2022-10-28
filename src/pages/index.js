@@ -35,7 +35,6 @@ const profileEditPopup = new PopupWithForm(
   (data) => {
     profileEditPopup.renderLoading(true, 'Сохранение...');
     api.setUserInfo(data).then((data) => {
-      console.log(data);
       userIfo.setUserInfo(data.name, data.about, data.avatar);
     }).catch((err) => {
       console.log(err);
