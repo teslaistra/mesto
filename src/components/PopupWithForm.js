@@ -7,7 +7,6 @@ class PopupWithForm extends Popup{
         this._form = this._popup.querySelector('.popup__form');
         this._inputList = this._form.querySelectorAll('.popup__item');
         this._button = this._form.querySelector('.popup__submit-button');
-        console.log(this._form);
         this._defaultText = this._button.textContent;
     }
 
@@ -20,8 +19,6 @@ class PopupWithForm extends Popup{
     }
 
     setInputValues(data) {
-        console.log(data);
-        console.log(this._inputList);
         this._inputList.forEach((item) => {
             item.value = data[item.name];
         })
