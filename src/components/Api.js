@@ -32,8 +32,48 @@ class Api {
         }).then(this._readResponse);
     }
 
+    addCard({name, link}) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        }).then(this._readResponse);
+    }
 
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        }).then(this._readResponse)
+        .catch((err) => {
+            console.log(err);
+        });
 
+    }
+    
+    setLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: 'PUT',
+            headers: this._headers
+        })
+        .then(this._readResponse)
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+    deleteLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: 'DELETE',
+            headers: this._headers
+        }).then(this._readResponse)
+        .catch((err) => {
+            console.log(err);
+        });
+    }
 }
 
 export { Api };
