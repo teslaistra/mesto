@@ -9,6 +9,8 @@ export const validationConfig = {
 
 export const formAdd = document.querySelector("#element-add");
 export const formProfileEdit = document.querySelector("#profile-edit");
+export const formAvatarEdit = document.querySelector("#edit-avatar");
+
 
 export const popupImageSelector = ".popup_type_image";
 export const popupAddSelector = ".popup_type_add-element";

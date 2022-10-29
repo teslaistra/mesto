@@ -12,6 +12,7 @@ import "./index.css";
 import {
   formAdd,
   formProfileEdit,
+  formAvatarEdit,
   popupImageSelector,
   popupAddSelector,
   popupAvatarSelector,
@@ -33,7 +34,7 @@ const editButton = document.querySelector(editButtonSelector);
 const addButton = document.querySelector(addButtonSelector);
 const avatarEditButton = document.querySelector(avatarSelector);
 
-const userIfo = new UserInfo({
+const userInfo = new UserInfo({
   nameSelector,
   descriptionSelector,
   avatarSelector,
@@ -52,14 +53,13 @@ const profileEditPopup = new PopupWithForm(popupEditSelector, (data) => {
   api
     .setUserInfo(data)
     .then((data) => {
-      userIfo.setUserInfo(data.name, data.about, data.avatar);
+      userInfo.setUserInfo(data.name, data.about, data.avatar);
+    }).then(() => {
+      profileEditPopup.renderLoading(false);
+      profileEditPopup.close();
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      profileEditPopup.renderLoading(false);
-      profileEditPopup.close();
     });
 });
 
@@ -74,13 +74,12 @@ const elementAddPopup = new PopupWithForm(
       .then((data) => {
         const card = createCard(data, elementTemplate, handleCardClick);
         elementsList.addItem(card);
+      }).then(() => {
+        elementAddPopup.renderLoading(false);
+        elementAddPopup.close();
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        elementAddPopup.renderLoading(false);
-        elementAddPopup.close();
       });
   }
 );
@@ -93,14 +92,16 @@ const avatarPopup = new PopupWithForm(
     api
       .changeAvatar(link)
       .then((data) => {
-        userIfo.setUserInfo(data.name, data.about, data.avatar);
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+      }).then(() => {
+        avatarPopup.renderLoading(false);
+        avatarPopup.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        avatarPopup.renderLoading(false);
-        avatarPopup.close();
+
       });
   }
 );
@@ -130,15 +131,12 @@ addFormValidation.enableValidation();
 const editFormValidation = new FormValidator(validationConfig, formProfileEdit);
 editFormValidation.enableValidation();
 
-const editAvatarFormValidation = new FormValidator(
-  validationConfig,
-  formProfileEdit
-);
+const editAvatarFormValidation = new FormValidator(validationConfig, formAvatarEdit);
 editAvatarFormValidation.enableValidation();
 
 editButton.addEventListener("click", function () {
   editFormValidation.resetValidation();
-  const userData = userIfo.getUserInfo();
+  const userData = userInfo.getUserInfo();
   profileEditPopup.setInputValues(userData);
   profileEditPopup.open();
 });
@@ -167,10 +165,11 @@ function createCard(data, cardSelector, handleCardClick) {
       confirmPopup.open(card);
     },
     (cardId) => {
-      // const result = api.setLike(cardId);
-      // console.log(result);
       api.setLike(cardId).then((result) => {
         card.updateLikes(result);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     },
     (cardId) => {
@@ -199,22 +198,12 @@ const elementsList = new Section(
   ".elements"
 );
 
-api
-  .getInitialCards()
-  .then((data) => {
-    cardsList = data.reverse();
-    elementsList.renderItems(cardsList);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+      userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+      userId = userData._id;
 
-api
-  .getUserInfo()
-  .then((data) => {
-    userIfo.setUserInfo(data.name, data.about, data.avatar);
-    userId = data._id;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+      cardsList = cards.reverse();
+      elementsList.renderItems(cardsList);
+    })
+    .catch((e) => console.log(e));
