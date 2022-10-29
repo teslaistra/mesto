@@ -20,6 +20,7 @@ export const popupEditSelector = ".popup_type_edit-profile";
 export const elementTemplate = "#element-template";
 export const popupAvatarSelector = ".popup_type_edit-avatar";
 export const avatarSelector = ".profile__avatar";
+export const popupConfirmDeletingSelector = ".popup_type_confirm";
 
 export const initialCards = [
     {

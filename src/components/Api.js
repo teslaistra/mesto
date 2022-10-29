@@ -74,6 +74,16 @@ class Api {
             console.log(err);
         });
     }
+
+    changeAvatar(avatar) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatar
+            })
+        }).then(this._readResponse);
+    }
 }
 
 export { Api };

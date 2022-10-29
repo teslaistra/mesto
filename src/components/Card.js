@@ -34,10 +34,7 @@ class Card {
   }
 
   _handleDeleteClick() {
-    console.log(this._id);
-    console.log(this._deleteCard);
     this._deleteCard(this._id);
-    this._element.remove();
   }
 
   _setEventListeners() {
@@ -82,6 +79,11 @@ class Card {
     this._likeCount = data.likes.length;
     this._count.textContent = this._likeCount;
   }
+
+  remove() {
+    this._element.remove();
+  }
+  
 }
 
 export { Card };
